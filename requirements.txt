@@ -1,0 +1,10 @@
+privex-helpers>=2.0.0
+privex-jsonrpc>=1.1.2
+Faker>=2.0.0
+jsonrpcserver>=4.0.0
+
+# Unit testing
+pytest
+pytest-cov
+coverage
+codecov
