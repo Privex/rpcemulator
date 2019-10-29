@@ -84,8 +84,18 @@ class TestBitcoinEmulator(unittest.TestCase):
         new_bal = self.rpc.getbalance()
         expected_bal = float(starting_balance - Decimal('0.001'))
         self.assertAlmostEqual(expected_bal, float(new_bal), delta=0.0001)
-        
-        
+    
+    def test_validate_address(self):
+        """Test ``validateaddress`` with a valid and invalid address"""
+        self.assertTrue(self.rpc.validateaddress('1Br7KPLQJFuS2naqidyzdciWUYhnMZAzKA')['isvalid'])
+        self.assertFalse(self.rpc.validateaddress('NotAnAddress')['isvalid'])
+
+    def test_get_transaction(self):
+        """Test ``gettransaction`` returns the correct transaction"""
+        tx = self.rpc.gettransaction('fccacaffcb0a0a104274f1caa0b710e5a58b78f774629bfdcae99d544750e655')
+        self.assertEqual(tx['address'], '13LWnGV7fGCUA2a9QiByGFKXL27H1HDuYp')
+        self.assertAlmostEqual(tx['amount'], 0.03, delta=0.000001)
+
         
         
 

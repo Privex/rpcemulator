@@ -62,7 +62,7 @@ def _setup_logging(level=logging.WARNING):
 log = _setup_logging()
 name = 'rpcemulator'
 
-VERSION = '0.8.0'
+VERSION = '0.8.1'
 
 
 

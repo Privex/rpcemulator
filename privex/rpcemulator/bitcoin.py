@@ -331,6 +331,21 @@ def getreceivedbyaddress(address, confirmations: int = 0):
 
 
 @method
+def validateaddress(address: str):
+    return dict(isvalid=_address_valid(address))
+
+
+@method
+def gettransaction(txid: str):
+    txs = j_transactions()
+    for t in txs:
+        if t['txid'] == txid:
+            return t
+    
+    assert False, "Transaction not found"
+
+
+@method
 def sendtoaddress(address, amount: Union[float, str, Decimal], comment="", comment_to="", subtractfee: bool = False):
     """
     Sends ``amount`` BTC to ``address`` - generates a fake TX in :py:attr:`.internal` transaction storage.
